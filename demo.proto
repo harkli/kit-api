@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package demo;
+
+import "github.com/metaverse/truss/deftree/googlethirdparty/annotations.proto";
+
+service Demo {
+  // 服务健康检测接口，服务注册用
+  rpc Alive (AliveRequest) returns (AliveResponse) {
+    option (google.api.http) = {
+      get: "/alive"
+    };
+  }
+
+  // 用户注册
+  rpc Register (RegisterRequest) returns (RegisterResponse) {
+    option (google.api.http) = {
+      custom {
+        kind: "HEAD"
+        // Loudness is accepted in the http path
+        path: "/register/{Loudness}"
+      }
+      additional_bindings {
+        post: "/register/{Loudness}"
+        // All other fields (In) are located in the body of the http/json request
+        body: "*"
+      }
+    };
+  }
+
+  // 身份认证
+  rpc Identification (IdentificationRequest) returns (IdentificationResponse) {
+    option (google.api.http) = {
+      custom {
+        kind: "HEAD"
+        // Loudness is accepted in the http path
+        path: "/identification/{Loudness}"
+      }
+      additional_bindings {
+        post: "/identification/{Loudness}"
+        // All other fields (In) are located in the body of the http/json request
+        body: "*"
+      }
+    };
+  }
+}
+
+message AliveRequest {
+}
+
+message AliveResponse {
+}
+
+message RegisterRequest {
+  int32 Identity = 1;
+}
+
+message RegisterResponse {
+  string IdentityCard = 1;
+}
+
+message IdentificationRequest {
+  int32 Identity = 1;
+}
+
+message IdentificationResponse {
+  int32 Identity = 1;
+}

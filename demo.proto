@@ -12,57 +12,25 @@ service Demo {
     };
   }
 
-  // 用户注册
-  rpc Register (RegisterRequest) returns (RegisterResponse) {
+  rpc Foo (FooRequest) returns (FooResponse) {
     option (google.api.http) = {
-      custom {
-        kind: "HEAD"
-        // Loudness is accepted in the http path
-        path: "/register/{Loudness}"
-      }
-      additional_bindings {
-        post: "/register/{Loudness}"
-        // All other fields (In) are located in the body of the http/json request
-        body: "*"
-      }
+      post: "/foo"
+      body: "*"
     };
   }
+}
 
-  // 身份认证
-  rpc Identification (IdentificationRequest) returns (IdentificationResponse) {
-    option (google.api.http) = {
-      custom {
-        kind: "HEAD"
-        // Loudness is accepted in the http path
-        path: "/identification/{Loudness}"
-      }
-      additional_bindings {
-        post: "/identification/{Loudness}"
-        // All other fields (In) are located in the body of the http/json request
-        body: "*"
-      }
-    };
-  }
+message FooRequest {
+  string foo = 1;
+}
+
+message FooResponse {
+  string code = 1;
+  string message = 2;
 }
 
 message AliveRequest {
 }
 
 message AliveResponse {
-}
-
-message RegisterRequest {
-  int32 Identity = 1;
-}
-
-message RegisterResponse {
-  string IdentityCard = 1;
-}
-
-message IdentificationRequest {
-  int32 Identity = 1;
-}
-
-message IdentificationResponse {
-  int32 Identity = 1;
 }

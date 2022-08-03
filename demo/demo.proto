@@ -18,6 +18,13 @@ service Demo {
       body: "*"
     };
   }
+
+  rpc Test (TestRequest) returns (TestResponse) {
+    option (google.api.http) = {
+      post: "/test"
+      body: "*"
+    };
+  }
 }
 
 message FooRequest {
@@ -33,4 +40,10 @@ message AliveRequest {
 }
 
 message AliveResponse {
+}
+
+message TestRequest {
+}
+
+message TestResponse {
 }

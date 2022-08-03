@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package demo;
+
+import "github.com/metaverse/truss/deftree/googlethirdparty/annotations.proto";
+
+service Foo {
+  rpc Test (TestRequest) returns (TestResponse) {
+    option (google.api.http) = {
+      post: "/test"
+      body: "*"
+    };
+  }
+}
+
+message TestRequest {
+}
+
+message TestResponse {
+}

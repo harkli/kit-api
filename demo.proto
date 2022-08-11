@@ -3,11 +3,11 @@ syntax = "proto3";
 package demo;
 
 import "github.com/metaverse/truss/deftree/googlethirdparty/annotations.proto";
-import "common.proto";
+// import "common.proto";
 
 service Demo {
   // 服务健康检测接口，服务注册用
-  rpc Alive (AliveRequest) returns (common.Empty) {
+  rpc Alive (AliveRequest) returns (Empty) {
     option (google.api.http) = {
       get: "/alive"
     };
@@ -48,3 +48,5 @@ message TestRequest {
 
 message TestResponse {
 }
+
+message Empty {}

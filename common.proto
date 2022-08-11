@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-package common;
-
-// import "github.com/metaverse/truss/deftree/googlethirdparty/annotations.proto";
-
-message Empty {}

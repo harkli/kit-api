@@ -26,6 +26,28 @@ service Demo {
       body: "*"
     };
   }
+
+  rpc Registe (RegisteRequest) returns (RegisteResponse) {
+    option (google.api.http) = {
+        post: "customer/registe"
+        body: "*"
+    };
+  }
+}
+
+message RegisteRequest {
+  string Phone = 1;
+  fixed32 Source = 2;// 1 手机号
+}
+
+message RegisteResponse {
+  string Code = 1;
+  string Message = 2;
+  RegisteData Data = 3;
+}
+
+message RegisteData {
+  string Code = 1;
 }
 
 message FooRequest {

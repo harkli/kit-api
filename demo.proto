@@ -29,7 +29,7 @@ service Demo {
 
   rpc Registe (RegisteRequest) returns (RegisteResponse) {
     option (google.api.http) = {
-        post: "customer/registe"
+        post: "/customer/registe"
         body: "*"
     };
   }
